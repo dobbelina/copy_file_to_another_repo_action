@@ -25,16 +25,17 @@ inputs:
   commit_message:
     description: 'A custom message for the commit'
     required: false
-  rename:
-    description: 'Rename the destination file'
-    required: false
-  use_rsync:
-    description: 'Copy files/directories using rsync instead of cp. Experimental feature, please know your use case'
+  delete_existing:
+    description: 'Delete all files in `destination_folder` before copying'
     required: false
   git_server:
     description: 'Git server host, default github.com'
     required: false
     default: github.com
+  retry_attempts:
+    description: 'Retry attempts if pushing commit failed'
+    required: false
+    default: "10"  
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -43,12 +44,13 @@ runs:
     - ${{ inputs.destination-repo }}
     - ${{ inputs.destination-folder }}
     - ${{ inputs.user-email }}
+    - ${{ inputs.user-name }}
     - ${{ inputs.destination-branch }}
     - ${{ inputs.destination-branch-create }}
     - ${{ inputs.commit-message }}
     - ${{ inputs.git-server }}
-    - ${{ inputs.rename }}
-    - ${{ inputs.use-rsync }}
+    - ${{ inputs.delete-existing }}
+    - ${{ inputs.retry_attempts }}
 branding:
   icon: 'git-commit'
   color: 'green'
