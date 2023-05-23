@@ -32,7 +32,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "test2.md"
+          source_file: "My_Folder"
           destination_repo: "dmnemec/release-test"
           destination_folder: "test-dir"
           user_email: "example@email.com"
