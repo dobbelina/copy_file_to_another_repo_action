@@ -15,7 +15,6 @@ This GitHub Action copies files or folders from the current repository to a loca
  + preserve the original commit message.
  
  + git-lfs support.
- 
  ```
 # Example Workflow
 ```yml
