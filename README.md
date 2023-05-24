@@ -2,6 +2,8 @@
 This GitHub Action copies files or folders from the current repository to a location in another repository
  ```diff
  Improved version from @dmnemec with:
+ + Uses rsync exclusively
+ 
  + delete_existing: true [optional] Delete all the existing 
  + files in the destination_folder before copying over
  + the new files.
