@@ -52,9 +52,9 @@ for SOURCE_FILE in $SOURCE_FILES; do
   
   # Handle source file
   if [ -d "$SOURCE_FILE" ]; then
-    rsync -avrh "$SOURCE_FILE"/* "$DEST_COPY"
+    rsync -avrh --exclude "$INPUT_EXCLUDE_FILES" "$SOURCE_FILE"/* "$DEST_COPY"
   else
-    rsync -avrh "$SOURCE_FILE" "$DEST_COPY"
+    rsync -avrh --exclude "$INPUT_EXCLUDE_FILES" "$SOURCE_FILE" "$DEST_COPY"
   fi
 done
 

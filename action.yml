@@ -36,6 +36,10 @@ inputs:
     description: 'Retry attempts if pushing commit failed'
     required: false
     default: "10"  
+  exclude_files:
+    description: 'Files to exclude for rsync.'
+    default: ''
+    required: false    
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -50,7 +54,8 @@ runs:
     - ${{ inputs.commit-message }}
     - ${{ inputs.git-server }}
     - ${{ inputs.delete-existing }}
-    - ${{ inputs.retry_attempts }}
+    - ${{ inputs.retry-attempts }}
+    - ${{ inputs.exclude-files }}
 branding:
   icon: 'git-commit'
   color: 'green'
