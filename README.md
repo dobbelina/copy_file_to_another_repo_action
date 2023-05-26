@@ -38,7 +38,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "My_Folder" #No forward slash on the end of folder names needed
+          source_file: "My_Folder" #No forward slash at the end of folder names needed
           destination_repo: "dmnemec/release-test"
           destination_folder: "test-dir"
           user_email: "example@email.com"
