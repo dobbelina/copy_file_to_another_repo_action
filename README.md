@@ -38,7 +38,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "My_Folder" #No forward slash at the end of folder names needed
+          source_file: "My_Folder" #No forward slash at the end of folder paths needed
           destination_repo: "dmnemec/release-test"
           destination_folder: "test-dir"
           user_email: "example@email.com"
@@ -51,7 +51,7 @@ jobs:
 The `API_TOKEN_GITHUB` needs to be set in the `Secrets` section of your repository options. You can retrieve the `API_TOKEN_GITHUB` [here](https://github.com/settings/tokens) (set the `repo` permissions).
 
 * source_file: The file(s) or directory/directories to be moved. Uses the same syntax as the `rsync` command. Include the path for any files not in the repositories root directory. Multiple source files/directories separated by comma 
-`"file1.txt,file2.txt"` or `'"file 1.txt","file 2.txt"'` if there are spaces in the file/folder name(s)
+`"file1.txt,file2.txt"` or `'"file 1.txt","file 2.txt"'` if there are spaces in the file/folder name(s), No forward slash at the end of folder paths needed.
 * destination_repo: The repository to place the file or directory in.
 * destination_folder: [optional] The folder in the destination repository to place the file in, if not the root directory.
 * user_email: The GitHub user email associated with the API token secret.
