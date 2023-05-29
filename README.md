@@ -63,7 +63,7 @@ The `API_TOKEN_GITHUB` needs to be set in the `Secrets` section of your reposito
 * commit_message: [optional] A custom commit message for the commit. Defaults to `Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}` 
  use `${{ github.event.head_commit.message }}` to preserve the original commit message.
 * delete_existing: true [optional] Delete all the existing files in the `destination_folder` before copying over the new files.
-  Use with caution!.
+  Use with caution!, If no destination_folder is specified everything in the root will be deleted.
 * exclude_files: [optional] Files to exclude for rsync.
 
 # Behavior Notes
