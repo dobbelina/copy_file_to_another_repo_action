@@ -8,6 +8,7 @@ This GitHub Action copies files or folders from the current repository to a loca
  + files in the destination_folder before copying over
  + the new files.
  ! Use with caution!.
+ ! If no destination_folder is specified everything in the root will be deleted.
  
  + Multiple source files/directories separated by comma
  + "file1.txt,file2.txt" or '"file 1.txt","file 2.txt"'
