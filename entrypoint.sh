@@ -31,15 +31,20 @@ git config --global user.name "$INPUT_USER_NAME"
 git config --global --add safe.directory $CLONE_DIR
 git clone --single-branch --branch $INPUT_DESTINATION_BRANCH "https://x-access-token:$API_TOKEN_GITHUB@$INPUT_GIT_SERVER/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
-DEST_COPY="$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+if [ -z "$INPUT_DESTINATION_FOLDER" ]
+then
+  DEST_COPY="$CLONE_DIR"
+else
+  echo "destination folder detected"
+  DEST_COPY="$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+fi
 
-echo "Copying contents to git repo"
 if [ "$INPUT_DELETE_EXISTING" = "true" ]; then
   echo "Deleting existing files"
-  rm -rf "$DEST_COPY"
+  rm -rf "$DEST_COPY"/*
 fi
 mkdir -p "$DEST_COPY"
-
+echo "Copying contents to git repo"
 SOURCE_FILES=$(echo "$INPUT_SOURCE_FILE" | tr ',' '\n')
 
 IFS=','
@@ -51,11 +56,7 @@ for SOURCE_FILE in $SOURCE_FILES; do
   SOURCE_FILE=$(echo "$SOURCE_FILE" | xargs)
   
   # Handle source file
-  if [ -d "$SOURCE_FILE" ] && [ "${SOURCE_FILE: -1}" != "/" ]; then
-    rsync -avrh --exclude "$INPUT_EXCLUDE_FILES" "$SOURCE_FILE"/ "$DEST_COPY"
-  else
-    rsync -avrh --exclude "$INPUT_EXCLUDE_FILES" "$SOURCE_FILE" "$DEST_COPY"
-  fi
+rsync -avrh --exclude "$INPUT_EXCLUDE_FILES" "$SOURCE_FILE" "$DEST_COPY"
 done
 
 cd "$CLONE_DIR"

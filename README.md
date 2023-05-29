@@ -7,7 +7,7 @@ This GitHub Action copies files or folders from the current repository to a loca
  + delete_existing: true [optional] Delete all the existing 
  + files in the destination_folder before copying over
  + the new files.
- + destination_folder: is mandatory if using this action.
+ ! Use with caution!.
  
  + Multiple source files/directories separated by comma
  + "file1.txt,file2.txt" or '"file 1.txt","file 2.txt"'
@@ -61,7 +61,7 @@ The `API_TOKEN_GITHUB` needs to be set in the `Secrets` section of your reposito
 * commit_message: [optional] A custom commit message for the commit. Defaults to `Update from https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}` 
  use `${{ github.event.head_commit.message }}` to preserve the original commit message.
 * delete_existing: true [optional] Delete all the existing files in the `destination_folder` before copying over the new files.
-  destination_folder: is mandatory if using this action.
+  Use with caution!.
 * exclude_files: [optional] Files to exclude for rsync.
 
 # Behavior Notes
