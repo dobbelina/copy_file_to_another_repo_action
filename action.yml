@@ -25,9 +25,6 @@ inputs:
   commit_message:
     description: 'A custom message for the commit'
     required: false
-  delete_existing:
-    description: 'Delete all files in `destination_folder` before copying'
-    required: false
   git_server:
     description: 'Git server host, default github.com'
     required: false
@@ -36,9 +33,9 @@ inputs:
     description: 'Retry attempts if pushing commit failed'
     required: false
     default: "10"  
-  exclude_files:
-    description: 'Files to exclude for rsync.'
-    default: ''
+  rsync_option:
+    description: 'switches for rsync.'
+    default: '-avrh'
     required: false    
 runs:
   using: 'docker'
@@ -53,9 +50,8 @@ runs:
     - ${{ inputs.destination-branch-create }}
     - ${{ inputs.commit-message }}
     - ${{ inputs.git-server }}
-    - ${{ inputs.delete-existing }}
     - ${{ inputs.retry-attempts }}
-    - ${{ inputs.exclude-files }}
+    - ${{ inputs.rsync-option }}
 branding:
   icon: 'git-commit'
   color: 'green'

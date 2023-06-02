@@ -39,10 +39,6 @@ else
   DEST_COPY="$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 fi
 
-if [ "$INPUT_DELETE_EXISTING" = "true" ]; then
-  echo "Deleting existing files"
-  rm -rf "$DEST_COPY"/*
-fi
 mkdir -p "$DEST_COPY"
 echo "Copying contents to git repo"
 SOURCE_FILES=$(echo "$INPUT_SOURCE_FILE" | tr ',' '\n')
@@ -55,8 +51,8 @@ for SOURCE_FILE in $SOURCE_FILES; do
   # Trim leading/trailing whitespace
   SOURCE_FILE=$(echo "$SOURCE_FILE" | xargs)
   
-  # Handle source file
-rsync -avrh --exclude "$INPUT_EXCLUDE_FILES" "$SOURCE_FILE" "$DEST_COPY"
+# Use eval to evaluate the rsync options as a command line argument
+eval "rsync $INPUT_RSYNC_OPTION \"$SOURCE_FILE\" \"$DEST_COPY\""
 done
 
 cd "$CLONE_DIR"
